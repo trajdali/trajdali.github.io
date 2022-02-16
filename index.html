@@ -2,23 +2,201 @@
 <html>
 <head>
     <title>TrajDali - Hi I am TrajDali, I am not a musician, but I make music.</title>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
     <style>
         html, body {
             padding: 0;
+            margin: 0;
+            font-family: 'Roboto Condensed', sans-serif;
+            color: #231f20;
+            scroll-snap-type: y mandatory;
+        }
 
+        nav {
+            position: absolute;
+            top: 0;
+            height: 10%;
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 5%;
+        }
+
+        nav #logo {
+            max-height: 150%;
+            margin-top: 1%;
+            flex: 1;
+        }
+
+        nav .links {
+            flex: 1;
+            padding: 1.5%;
+            display: flex;
+            justify-content: end;
+        }
+
+        nav .links a {
+            padding: 1% 5%;
+            text-decoration: none;
+            color: inherit;
+            font-size: 2rem;
+        }
+
+        #logo img {
+            max-height: 150%;
         }
 
         #hero {
+            height: 80vh;
+            padding: 10vh;
+            scroll-snap-align: start;
+            min-block-size: 80vh;
+            scroll-snap-stop: always;
+        }
+
+        #hero .hero-image {
             background-image: url(./background.jpg);
             background-size: cover;            
             background-position: 75% 35%;
             background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+        }
+
+        #music {
             height: 80vh;
-            margin: 5%;
+            padding: 10vh;
+            scroll-snap-align: start;
+            min-block-size: 80vh;
+            scroll-snap-stop: always;
+        }
+
+        #music .content {
+            background-color: lightgrey;
+            width: 100%;
+            height: 100%;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        #socials {
+            height: 80vh;
+            padding: 10vh;
+            scroll-snap-align: start;
+            min-block-size: 80vh;
+            scroll-snap-stop: always;
+        }
+
+        #socials .content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #socials .content h3 {
+            text-align: right;
+        }
+
+        #socials .content a {
+            display: inline-block;
+            width: 128px;
+            height: 128px;
+            margin: 0 1rem;
+        }
+
+        #contact {
+            height: 80vh;
+            padding: 10vh;
+            scroll-snap-align: start;
+            min-block-size: 80vh;
+            scroll-snap-stop: always;
+        }
+
+        #contact .content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #contact .content .email-address {
+            font-size: 3rem;
+        }
+
+        #contact .content .contact-details {
+            position: relative;
+        }
+
+        #contact .content .contact-details p:first-child {
+            position: absolute;
+            top: 1rem;
+        }
+
+        .social-media-icon {
+            max-width: 128px;
         }
     </style>
 </head>
 <body>
-    <div id="hero"></div>
+    <nav>
+        <div id="logo">
+            <img src="logo.svg" alt="Logo"/>
+        </div>
+        <div class="links">
+            <a href="#music">Music</a>
+            <a href="#socials">Socials</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+    <div id="hero">
+        <div class="hero-image"></div>
+    </div>
+    <div id="music">
+        <div class="content">Coming soon</div>
+    </div>
+    <div id="socials">
+        <div class="content">
+            <div>
+                <h3>keep in touch on socials</h3>
+                <div>
+                    <a href="https://open.spotify.com/artist/42qziEWi03l5PmI8bafqsB" target="_blank">
+                        <img src="icons/spotify.svg" class="social-media-icon">
+                    </a>
+                    <a href="https://soundcloud.com/trajdali" target="_blank">
+                        <img src="icons/soundcloud.svg" class="social-media-icon">
+                    </a>
+                    <a href="https://www.instagram.com/trajdali" target="_blank">
+                        <img src="icons/instagram.svg" class="social-media-icon">
+                    </a>
+                    <a href="https://youtube.com/trajdali" target="_blank">
+                        <img src="icons/youtube.svg" class="social-media-icon">
+                    </a>
+                    <a href="https://twitter.com/trajdali" target="_blank">
+                        <img src="icons/twitter.svg" class="social-media-icon">
+                    </a>
+                    <a href="https://tiktok.com/@trajdali" target="_blank">
+                        <img src="icons/tiktok.svg" class="social-media-icon">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="contact">
+        <div class="content">
+            <div class="contact-details">
+                <p>for inquiries shoot an email to</p>
+                <p class="email-address">&#116;&#114;&#097;&#106;&#100;&#097;&#108;&#105;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
