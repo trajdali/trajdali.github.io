@@ -45,16 +45,28 @@
             font-size: 2rem;
         }
 
+        nav .links a:last-child {
+            padding-right: 0;
+        }
+
         #logo img {
             max-height: 150%;
         }
 
-        #hero {
+        section {
             height: 80vh;
             padding: 10vh;
             scroll-snap-align: start;
             min-block-size: 80vh;
             scroll-snap-stop: always;
+        }
+
+        section .content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         #hero .hero-image {
@@ -66,39 +78,10 @@
             height: 100%;
         }
 
-        #music {
-            height: 80vh;
-            padding: 10vh;
-            scroll-snap-align: start;
-            min-block-size: 80vh;
-            scroll-snap-stop: always;
-        }
-
         #music .content {
             background-color: lightgrey;
-            width: 100%;
-            height: 100%;
             text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             font-size: 3rem;
-        }
-
-        #socials {
-            height: 80vh;
-            padding: 10vh;
-            scroll-snap-align: start;
-            min-block-size: 80vh;
-            scroll-snap-stop: always;
-        }
-
-        #socials .content {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         #socials .content h3 {
@@ -112,20 +95,8 @@
             margin: 0 1rem;
         }
 
-        #contact {
-            height: 80vh;
-            padding: 10vh;
-            scroll-snap-align: start;
-            min-block-size: 80vh;
-            scroll-snap-stop: always;
-        }
-
-        #contact .content {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        #socials .content a:last-child {
+            margin-right: 0;
         }
 
         #contact .content .email-address {
@@ -144,6 +115,12 @@
         .social-media-icon {
             max-width: 128px;
         }
+
+        @media screen and (max-width: 900px) {
+            nav .links {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -157,13 +134,13 @@
             <a href="#contact">Contact</a>
         </div>
     </nav>
-    <div id="hero">
+    <section id="hero">
         <div class="hero-image"></div>
-    </div>
-    <div id="music">
+    </section>
+    <section id="music">
         <div class="content">Coming soon</div>
-    </div>
-    <div id="socials">
+    </section>
+    <section id="socials">
         <div class="content">
             <div>
                 <h3>keep in touch on socials</h3>
@@ -189,14 +166,14 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div id="contact">
+    </section>
+    <section id="contact">
         <div class="content">
             <div class="contact-details">
                 <p>for inquiries shoot an email to</p>
                 <p class="email-address">&#116;&#114;&#097;&#106;&#100;&#097;&#108;&#105;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;</p>
             </div>
         </div>
-    </div>
+    </section>
 </body>
 </html>
