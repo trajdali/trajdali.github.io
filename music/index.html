@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TrajDali | Music</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            padding: 0;
+            margin: 0;
+            font-family: 'Roboto Condensed', sans-serif;
+            color: #231f20;
+            scroll-snap-type: y mandatory;
+        }
+
+        nav {
+            position: absolute;
+            top: 0;
+            height: 10vh;
+            width: calc(100% - 10vw);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 5%;
+        }
+
+        nav #logo {
+            max-height: 150%;
+            margin-top: 1%;
+            flex: 1;
+        }
+
+        nav .links {
+            flex: 1;
+            padding: 1.5%;
+            display: flex;
+            justify-content: end;
+        }
+
+        nav .links a {
+            padding: 1% 5%;
+            text-decoration: none;
+            color: inherit;
+            font-size: 2rem;
+        }
+
+        nav .links a:last-child {
+            padding-right: 0;
+        }
+
+        #logo img {
+            max-height: 150%;
+        }
+
+        section {
+            height: 80vh;
+            padding: 10vh;
+            scroll-snap-align: start;
+            min-block-size: 80vh;
+            scroll-snap-stop: always;
+        }
+
+        section .content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* MUSIC */
+
+        #music {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        #music .content {
+            text-transform: uppercase;
+            font-size: 3rem;
+            width: 100%;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .releases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 2rem; /* Added bottom padding */
+        }
+
+        .release-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .release-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .release-cover-image {
+            width: 100%;
+            aspect-ratio: 1;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            view-transition-name: cover-image;
+        }
+
+        .release-cover-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            view-transition-name: cover-image;
+        }
+
+        .release-details {
+            text-align: left;
+        }
+
+        .release-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .release-type {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .release-year {
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        /* Add transition styles */
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fade-out {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        @keyframes slide-from-right {
+            from { transform: translateX(100px); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes slide-to-left {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100px); }
+        }
+
+        @keyframes scale-up {
+            from { transform: scale(1); }
+            to { transform: scale(1.5); }
+        }
+
+        @keyframes scale-down {
+            from { transform: scale(1.5); }
+            to { transform: scale(1); }
+        }
+
+        ::view-transition-old(cover-image) {
+            animation: 800ms cubic-bezier(0.4, 0, 0.2, 1) both fade-out,
+                       800ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left,
+                       800ms cubic-bezier(0.4, 0, 0.2, 1) both scale-down;
+        }
+
+        ::view-transition-new(cover-image) {
+            animation: 800ms cubic-bezier(0.4, 0, 0.2, 1) both fade-in,
+                       800ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right,
+                       800ms cubic-bezier(0.4, 0, 0.2, 1) both scale-up;
+        }
+
+        @media screen and (max-width: 900px) {
+            body, html {
+                overflow-x: hidden;
+            }
+
+            nav .links {
+                display: none;
+            }
+
+            #music .content {
+                font-size: 1rem;
+                padding: 1rem;
+            }
+
+            .releases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .release-title {
+                font-size: 1.5rem;
+            }
+
+            .release-type, .release-year, .release-tracks {
+                font-size: 1rem;
+            }
+        }     
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div id="logo">
+            <a href="../">
+                <img src="../logo.svg" alt="Logo"/>
+            </a>
+        </div>
+        <div class="links">
+            <a href="../music">Music</a>
+            <!--<a href="../mixes">Mixes</a>-->
+            <a href="../contact">Contact</a>
+        </div>
+    </nav>
+    <section id="music">
+        <div class="content">
+            <div class="releases-grid">
+                <a href="../til-the-sun-comes-up" class="release-card">
+                    <div class="release-cover-image">
+                        <img src="til-the-sun-comes-up-480.jpg" alt="Til The Sun Comes Up Cover">
+                    </div>
+                    <div class="release-details">
+                        <div class="release-title">Til The Sun Comes Up</div>
+                        <div class="release-type">Single</div>
+                        <div class="release-year">2023</div>
+                    </div>
+                </a>
+                <a href="../cant-do-without" class="release-card">
+                    <div class="release-cover-image">
+                        <img src="cant-do-without-480.jpg" alt="Can't Do Without Cover">
+                    </div>
+                    <div class="release-details">
+                        <div class="release-title">Can't Do Without</div>
+                        <div class="release-type">Single</div>
+                        <div class="release-year">2023</div>
+                    </div>
+                </a>
+                <a href="../simple-things" class="release-card">
+                    <div class="release-cover-image">
+                        <img src="simple-things-480.jpg" alt="Simple Things Cover">
+                    </div>
+                    <div class="release-details">
+                        <div class="release-title">Simple Things</div>
+                        <div class="release-type">Single</div>
+                        <div class="release-year">2023</div>
+                    </div>
+                </a>
+                <a href="../keep-trying" class="release-card">
+                    <div class="release-cover-image">
+                        <img src="keep-trying-480.jpg" alt="Keep Trying Cover">
+                    </div>
+                    <div class="release-details">
+                        <div class="release-title">Keep Trying</div>
+                        <div class="release-type">Single</div>
+                        <div class="release-year">2023</div>
+                    </div>
+                </a>                
+                <!--<a href="release.html?release=getaway" class="release-card">
+                    <div class="release-cover-image">
+                        <img src="getaway.jpg" alt="Getaway Cover">
+                    </div>
+                    <div class="release-details">
+                        <div class="release-title">Getaway</div>
+                        <div class="release-type">Single</div>
+                        <div class="release-year">2019</div>
+                    </div>
+                </a>-->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Check if the View Transitions API is supported
+        if (document.startViewTransition) {
+            // Handle navigation with View Transitions API
+            document.addEventListener('click', async e => {
+                // Only handle clicks on links
+                if (!e.target.closest('a')) return;
+
+                // Prevent default navigation
+                e.preventDefault();
+                const href = e.target.closest('a').href;
+
+                // Start view transition
+                const transition = document.startViewTransition(async () => {
+                    // Navigate to the new page
+                    window.location.href = href;
+                });
+
+                // Wait for the transition to complete
+                await transition.finished;
+            });
+        }
+    </script>
+</body>
+</html>

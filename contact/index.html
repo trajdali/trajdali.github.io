@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TrajDali | Contact</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            padding: 0;
+            margin: 0;
+            font-family: 'Roboto Condensed', sans-serif;
+            color: #231f20;
+            scroll-snap-type: y mandatory;
+        }
+
+        nav {
+            position: absolute;
+            top: 0;
+            height: 10vh;
+            width: calc(100% - 10vw);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 5%;
+        }
+
+        nav #logo {
+            max-height: 150%;
+            margin-top: 1%;
+            flex: 1;
+        }
+
+        nav .links {
+            flex: 1;
+            padding: 1.5%;
+            display: flex;
+            justify-content: end;
+        }
+
+        nav .links a {
+            padding: 1% 5%;
+            text-decoration: none;
+            color: inherit;
+            font-size: 2rem;
+        }
+
+        nav .links a:last-child {
+            padding-right: 0;
+        }
+
+        #logo img {
+            max-height: 150%;
+        }
+
+        section {
+            height: 80vh;
+            padding: 10vh;
+            scroll-snap-align: start;
+            min-block-size: 80vh;
+            scroll-snap-stop: always;
+        }
+
+        section .content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #hero .hero-image {
+            background-image: url(./background.jpg);
+            background-image: -webkit-image-set(
+                url("./images/background-480.jpg") 1x,
+                url("./images/background-768.jpg") 2x,
+                url("./images/background-1200.jpg") 3x,
+                url("./images/background-1920.jpg") 4x
+            );
+            background-image: image-set(
+                url("./images/background-480.jpg") 1x,
+                url("./images/background-768.jpg") 2x,
+                url("./images/background-1200.jpg") 3x,
+                url("./images/background-1920.jpg") 4x
+            );
+            background-size: cover;
+            background-position: 75% 35%;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+        }
+
+        #hero .hero-image picture,
+        #hero .hero-image img {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* SOCIALS */
+
+        #socials .content h3 {
+            text-align: right;
+        }
+
+        #socials .content a {
+            display: inline-block;
+            width: 128px;
+            height: 128px;
+            margin: 0 1rem;
+        }
+
+        #socials .content a:last-child {
+            margin-right: 0;
+        }
+
+        #contact .content .email-address {
+            font-size: 3rem;
+        }
+
+        #contact .content .contact-details {
+            position: relative;
+        }
+
+        #contact .content .contact-details p:first-child {
+            position: absolute;
+            top: 1rem;
+        }
+
+        .social-media-icon {
+            max-width: 128px;
+        }
+
+        /* Add transition styles */
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fade-out {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        @keyframes slide-from-right {
+            from { transform: translateX(100px); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes slide-to-left {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100px); }
+        }
+
+        @keyframes scale-up {
+            from { transform: scale(1); }
+            to { transform: scale(1.5); }
+        }
+
+        @keyframes scale-down {
+            from { transform: scale(1.5); }
+            to { transform: scale(1); }
+        }
+
+        ::view-transition-old(cover-image) {
+            animation: 800ms cubic-bezier(0.4, 0, 0.2, 1) both fade-out,
+                       800ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left,
+                       800ms cubic-bezier(0.4, 0, 0.2, 1) both scale-down;
+        }
+
+        ::view-transition-new(cover-image) {
+            animation: 800ms cubic-bezier(0.4, 0, 0.2, 1) both fade-in,
+                       800ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right,
+                       800ms cubic-bezier(0.4, 0, 0.2, 1) both scale-up;
+        }
+
+        @media screen and (max-width: 900px) {
+            body, html {
+                overflow-x: hidden;
+            }
+
+            nav .links {
+                display: none;
+            }
+
+            #music .content {
+                font-size: 1rem;
+                padding: 1rem;
+            }
+
+            .releases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .release-title {
+                font-size: 1.5rem;
+            }
+
+            .release-type, .release-year, .release-tracks {
+                font-size: 1rem;
+            }
+
+            #socials .content h3 {
+                text-align: left;
+            }
+
+            #socials .content a {
+                width: 32px;
+                height: 32px;
+            }
+
+            #contact .content .contact-details p:first-child {
+                top: 0rem;
+            }
+
+            #contact .content .email-address {
+                font-size: 2rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div id="logo">
+            <a href="../">
+                <img src="../logo.svg" alt="Logo"/>
+            </a>
+        </div>
+        <div class="links">
+            <a href="../music">Music</a>
+            <!--<a href="../mixes">Mixes</a>-->
+            <a href="../contact">Contact</a>
+        </div>
+    </nav>
+    <section id="contact">
+        <div class="content">
+            <div class="contact-details">
+                <p>for inquiries shoot an email to</p>
+                <p class="email-address">&#116;&#114;&#097;&#106;&#100;&#097;&#108;&#105;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Check if the View Transitions API is supported
+        if (document.startViewTransition) {
+            // Handle navigation with View Transitions API
+            document.addEventListener('click', async e => {
+                // Only handle clicks on links
+                if (!e.target.closest('a')) return;
+
+                // Prevent default navigation
+                e.preventDefault();
+                const href = e.target.closest('a').href;
+
+                // Start view transition
+                const transition = document.startViewTransition(async () => {
+                    // Navigate to the new page
+                    window.location.href = href;
+                });
+
+                // Wait for the transition to complete
+                await transition.finished;
+            });
+        }
+    </script>
+</body>
+</html>
