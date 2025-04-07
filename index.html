@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>TrajDali - Hi I am TrajDali, I am not a musician, but I make music.</title>
+    <title>TrajDali</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,8 +18,8 @@
         nav {
             position: absolute;
             top: 0;
-            height: 10%;
-            width: 90%;
+            height: 10vh;
+            width: calc(100% - 10vw);
             display: flex;
             justify-content: space-between;
             padding: 0 5%;
@@ -69,22 +69,140 @@
             justify-content: center;
         }
 
+        /* #hero {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        } */
+
         #hero .hero-image {
             background-image: url(./background.jpg);
-            background-size: cover;            
+            background-image: -webkit-image-set(
+                url("./images/background-480.jpg") 1x,
+                url("./images/background-768.jpg") 2x,
+                url("./images/background-1200.jpg") 3x,
+                url("./images/background-1920.jpg") 4x
+            );
+            background-image: image-set(
+                url("./images/background-480.jpg") 1x,
+                url("./images/background-768.jpg") 2x,
+                url("./images/background-1200.jpg") 3x,
+                url("./images/background-1920.jpg") 4x
+            );
+            background-size: cover;
             background-position: 75% 35%;
             background-repeat: no-repeat;
             width: 100%;
             height: 100%;
         }
 
-        #music .content {
-            background-color: lightgrey;
-            text-transform: uppercase;
-            font-size: 3rem;
+        #hero .hero-image picture,
+        #hero .hero-image img {
+            width: 100%;
+            height: 100%;
         }
 
-        #socials .content h3 {
+        /* MUSIC */
+
+        /* #music .content {
+            text-transform: uppercase;
+            font-size: 3rem;
+            width: 100%;
+            padding: 2rem;
+        }
+
+        .releases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .release-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .release-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .release-cover-image {
+            width: 100%;
+            aspect-ratio: 1;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            view-transition-name: cover-image;
+        }
+
+        .release-cover-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            view-transition-name: cover-image;
+        }
+
+        .release-details {
+            text-align: left;
+        }
+
+        .release-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .release-type {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .release-year {
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        .release-tracks {
+            font-size: 1.2rem;
+        }
+
+        .release-track {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .release-track:last-child {
+            border-bottom: none;
+        }
+
+        .release-track-number {
+            width: 2rem;
+            color: #666;
+        }
+
+        .release-track-name {
+            flex: 1;
+        }
+
+        .release-track-length {
+            color: #666;
+        } */
+
+        /* SOCIALS */
+
+        /* #socials .content h3 {
             text-align: right;
         }
 
@@ -114,6 +232,49 @@
 
         .social-media-icon {
             max-width: 128px;
+        } */
+
+        /* Add transition styles */
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fade-out {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        @keyframes slide-from-right {
+            from { transform: translateX(100px); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes slide-to-left {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100px); }
+        }
+
+        @keyframes scale-up {
+            from { transform: scale(1); }
+            to { transform: scale(1.5); }
+        }
+
+        @keyframes scale-down {
+            from { transform: scale(1.5); }
+            to { transform: scale(1); }
+        }
+
+        ::view-transition-old(cover-image) {
+            animation: 800ms cubic-bezier(0.4, 0, 0.2, 1) both fade-out,
+                       800ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left,
+                       800ms cubic-bezier(0.4, 0, 0.2, 1) both scale-down;
+        }
+
+        ::view-transition-new(cover-image) {
+            animation: 800ms cubic-bezier(0.4, 0, 0.2, 1) both fade-in,
+                       800ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right,
+                       800ms cubic-bezier(0.4, 0, 0.2, 1) both scale-up;
         }
 
         @media screen and (max-width: 900px) {
@@ -125,7 +286,20 @@
                 display: none;
             }
 
-            #music .content {
+            /* #music .content {
+                font-size: 1rem;
+                padding: 1rem;
+            }
+
+            .releases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .release-title {
+                font-size: 1.5rem;
+            }
+
+            .release-type, .release-year, .release-tracks {
                 font-size: 1rem;
             }
 
@@ -144,8 +318,9 @@
 
             #contact .content .email-address {
                 font-size: 2rem;
-            }
+            } */
         }
+
     </style>
 </head>
 <body>
@@ -154,51 +329,37 @@
             <img src="logo.svg" alt="Logo"/>
         </div>
         <div class="links">
-            <a href="#music">Music</a>
-            <a href="#socials">Socials</a>
-            <a href="#contact">Contact</a>
+            <a href="music">Music</a>
+            <!--<a href="mixes">Mixes</a>-->
+            <a href="contact">Contact</a>
         </div>
     </nav>
     <section id="hero">
         <div class="hero-image"></div>
     </section>
-    <section id="music">
-        <div class="content">Coming soon</div>
-    </section>
-    <section id="socials">
-        <div class="content">
-            <div>
-                <h3>keep in touch on socials</h3>
-                <div>
-                    <a href="https://open.spotify.com/artist/42qziEWi03l5PmI8bafqsB" target="_blank">
-                        <img src="icons/spotify.svg" class="social-media-icon">
-                    </a>
-                    <a href="https://soundcloud.com/trajdali" target="_blank">
-                        <img src="icons/soundcloud.svg" class="social-media-icon">
-                    </a>
-                    <a href="https://www.instagram.com/trajdali" target="_blank">
-                        <img src="icons/instagram.svg" class="social-media-icon">
-                    </a>
-                    <a href="https://youtube.com/trajdali" target="_blank">
-                        <img src="icons/youtube.svg" class="social-media-icon">
-                    </a>
-                    <a href="https://twitter.com/trajdali" target="_blank">
-                        <img src="icons/twitter.svg" class="social-media-icon">
-                    </a>
-                    <a href="https://tiktok.com/@trajdali" target="_blank">
-                        <img src="icons/tiktok.svg" class="social-media-icon">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="contact">
-        <div class="content">
-            <div class="contact-details">
-                <p>for inquiries shoot an email to</p>
-                <p class="email-address">&#116;&#114;&#097;&#106;&#100;&#097;&#108;&#105;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;</p>
-            </div>
-        </div>
-    </section>
+
+    <script>
+        // Check if the View Transitions API is supported
+        if (document.startViewTransition) {
+            // Handle navigation with View Transitions API
+            document.addEventListener('click', async e => {
+                // Only handle clicks on links
+                if (!e.target.closest('a')) return;
+
+                // Prevent default navigation
+                e.preventDefault();
+                const href = e.target.closest('a').href;
+
+                // Start view transition
+                const transition = document.startViewTransition(async () => {
+                    // Navigate to the new page
+                    window.location.href = href;
+                });
+
+                // Wait for the transition to complete
+                await transition.finished;
+            });
+        }
+    </script>
 </body>
 </html>
