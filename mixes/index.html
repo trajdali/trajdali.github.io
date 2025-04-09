@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>TrajDali</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>TrajDali | Mixes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
@@ -13,13 +13,15 @@
             font-family: 'Roboto Condensed', sans-serif;
             color: #231f20;
             scroll-snap-type: y mandatory;
+            overflow-x: hidden;
+            width: 100%;
         }
 
         nav {
             position: absolute;
             top: 0;
             height: 10vh;
-            width: calc(100% - 10vw);
+            width: 90%;
             display: flex;
             justify-content: space-between;
             padding: 0 5%;
@@ -56,10 +58,12 @@
 
         section {
             height: 80vh;
-            padding: 10vh;
+            padding: 10vh 5%;
             scroll-snap-align: start;
             min-block-size: 80vh;
             scroll-snap-stop: always;
+            width: 90%;
+            box-sizing: border-box;
         }
 
         section .content {
@@ -70,53 +74,88 @@
             justify-content: center;
         }
 
-        #hero .hero-image {
-            background-image: url(./background.jpg);
-            background-image: -webkit-image-set(
-                url("./images/background-480.jpg") 1x,
-                url("./images/background-768.jpg") 2x,
-                url("./images/background-1200.jpg") 3x,
-                url("./images/background-1920.jpg") 4x
-            );
-            background-image: image-set(
-                url("./images/background-480.jpg") 1x,
-                url("./images/background-768.jpg") 2x,
-                url("./images/background-1200.jpg") 3x,
-                url("./images/background-1920.jpg") 4x
-            );
-            background-size: cover;
-            background-position: 75% 35%;
-            background-repeat: no-repeat;
+        /* MIXES */
+
+        #mixes {
             width: 100%;
             height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
         }
 
-        #hero .hero-image picture,
-        #hero .hero-image img {
+        #mixes .content {
+            text-transform: uppercase;
+            font-size: 3rem;
+            width: 100%;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mixes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 2rem;
+        }
+
+        .mix-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .mix-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .mix-thumbnail {
+            width: 100%;
+            aspect-ratio: 16/9;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            view-transition-name: mix-thumbnail;
+        }
+
+        .mix-thumbnail img {
             width: 100%;
             height: 100%;
+            object-fit: cover;
+            view-transition-name: mix-thumbnail;
         }
 
-        /* SOCIALS */
-
-        /* #socials .content h3 {
-            text-align: right;
+        .mix-details {
+            text-align: left;
         }
 
-        #socials .content a {
-            display: inline-block;
-            width: 128px;
-            height: 128px;
-            margin: 0 1rem;
+        .mix-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
         }
 
-        #socials .content a:last-child {
-            margin-right: 0;
+        .mix-date {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 0.5rem;
         }
 
-        .social-media-icon {
-            max-width: 128px;
-        } */
+        .mix-description {
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 1rem;
+            text-transform: none;
+        }
 
         /* Add transition styles */
         @keyframes fade-in {
@@ -149,13 +188,13 @@
             to { transform: scale(1); }
         }
 
-        ::view-transition-old(cover-image) {
+        ::view-transition-old(mix-thumbnail) {
             animation: 800ms cubic-bezier(0.4, 0, 0.2, 1) both fade-out,
                        800ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left,
                        800ms cubic-bezier(0.4, 0, 0.2, 1) both scale-down;
         }
 
-        ::view-transition-new(cover-image) {
+        ::view-transition-new(mix-thumbnail) {
             animation: 800ms cubic-bezier(0.4, 0, 0.2, 1) both fade-in,
                        800ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right,
                        800ms cubic-bezier(0.4, 0, 0.2, 1) both scale-up;
@@ -189,7 +228,7 @@
             height: 100vh;
             background-color: white;
             z-index: 999;
-            padding: 10vh 2rem;
+            padding: 2rem;
             box-sizing: border-box;
         }
 
@@ -221,11 +260,16 @@
 
         .burger-menu.active span:nth-child(3) {
             transform: translateY(-9px) rotate(-45deg);
-        }        
+        }
 
         @media screen and (max-width: 900px) {
             body, html {
                 overflow-x: hidden;
+                width: 100%;
+            }
+
+            nav {
+                width: 90%;
             }
 
             nav .links {
@@ -236,36 +280,37 @@
                 display: flex;
             }
 
-            /* 
-
-            #socials .content h3 {
-                text-align: left;
+            #mixes .content {
+                font-size: 1rem;
+                padding: 1rem;
             }
 
-            #socials .content a {
-                width: 32px;
-                height: 32px;
+            .mixes-grid {
+                grid-template-columns: 1fr;
             }
- */
-        }
 
-        @media screen and (max-width: 480px) {
-            #hero .hero-image {
-                background-position: 70% 35%;
+            .mix-title {
+                font-size: 1.5rem;
             }
-        }
+
+            .mix-date, .mix-description {
+                font-size: 1rem;
+            }
+        }     
 
     </style>
 </head>
 <body>
     <nav>
         <div id="logo">
-            <img src="logo.svg" alt="Logo"/>
+            <a href="../">
+                <img src="../logo.svg" alt="Logo"/>
+            </a>
         </div>
         <div class="links">
-            <a href="music">Music</a>
-            <a href="mixes">Mixes</a>
-            <a href="contact">Contact</a>
+            <a href="../music">Music</a>
+            <a href="../mixes">Mixes</a>
+            <a href="../contact">Contact</a>
         </div>
         <div class="burger-menu">
             <span></span>
@@ -275,13 +320,36 @@
     </nav>
     <div class="mobile-menu">
         <div class="links">
-            <a href="music">Music</a>
-            <a href="mixes">Mixes</a>
-            <a href="contact">Contact</a>
+            <a href="../music">Music</a>
+            <a href="../mixes">Mixes</a>
+            <a href="../contact">Contact</a>
         </div>
-    </div>    
-    <section id="hero">
-        <div class="hero-image"></div>
+    </div>
+    <section id="mixes">
+        <div class="content">
+            <div class="mixes-grid">
+                <a href="contemporary-alt-mix" class="mix-card">
+                    <div class="mix-thumbnail">
+                        <img src="contemporary-alt-mix-thumb.jpg" alt="Contemporary Alt Mix">
+                    </div>
+                    <div class="mix-details">
+                        <div class="mix-title">Contemporary Alt Mix</div>
+                        <div class="mix-date">October 2024</div>
+                        <div class="mix-description">A mix of remixed contemporary alternative Serbian music.</div>
+                    </div>
+                </a>
+                <a href="made-in-yugoslavia" class="mix-card">
+                    <div class="mix-thumbnail">
+                        <img src="made-in-yugoslavia-thumb.jpg" alt="Made in Yugoslavia">
+                    </div>
+                    <div class="mix-details">
+                        <div class="mix-title">Made in Yugoslavia</div>
+                        <div class="mix-date">August 2023</div>
+                        <div class="mix-description">Refreshed and remixed old Yugoslavian songs.</div>
+                    </div>
+                </a>
+            </div>
+        </div>
     </section>
 
     <script>
@@ -325,4 +393,4 @@
         }
     </script>
 </body>
-</html>
+</html> 
