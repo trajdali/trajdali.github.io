@@ -23,6 +23,7 @@
             display: flex;
             justify-content: space-between;
             padding: 0 5%;
+            z-index: 1000;
         }
 
         nav #logo {
@@ -130,6 +131,68 @@
             max-width: 128px;
         }
 
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 1001;
+            margin-top: 5vh;
+        }
+
+        .burger-menu span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #231f20;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: white;
+            z-index: 999;
+            padding: 10vh 2rem;
+            box-sizing: border-box;
+        }
+
+        .mobile-menu .links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .mobile-menu .links a {
+            font-size: 2rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .burger-menu.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .burger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }        
+
         /* Add transition styles */
         @keyframes fade-in {
             from { opacity: 0; }
@@ -182,6 +245,10 @@
                 display: none;
             }
 
+            .burger-menu {
+                display: flex;
+            }            
+
             #music .content {
                 font-size: 1rem;
                 padding: 1rem;
@@ -231,7 +298,19 @@
             <!--<a href="../mixes">Mixes</a>-->
             <a href="../contact">Contact</a>
         </div>
+        <div class="burger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>        
     </nav>
+    <div class="mobile-menu">
+        <div class="links">
+            <a href="../music">Music</a>
+            <!--<a href="../mixes">Mixes</a>-->
+            <a href="../contact">Contact</a>
+        </div>
+    </div>
     <section id="contact">
         <div class="content">
             <div class="contact-details">
@@ -242,6 +321,23 @@
     </section>
 
     <script>
+        // Burger menu functionality
+        const burgerMenu = document.querySelector('.burger-menu');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        burgerMenu.addEventListener('click', () => {
+            burgerMenu.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                burgerMenu.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
         // Check if the View Transitions API is supported
         if (document.startViewTransition) {
             // Handle navigation with View Transitions API
