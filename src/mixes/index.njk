@@ -1,0 +1,184 @@
+---
+permalink: "/mixes/index.html"
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TrajDali | Mixes</title>
+    {% include "head.njk" %}
+    <style>
+        {% include "base-styles.njk" %}
+
+        html, body {
+            padding: 0;
+            margin: 0;
+            font-family: 'Roboto Condensed', sans-serif;
+            color: #231f20;
+            scroll-snap-type: y mandatory;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        nav {
+            width: 90%;
+        }
+
+        section {
+            height: 80vh;
+            padding: 10vh 5%;
+            scroll-snap-align: start;
+            min-block-size: 80vh;
+            scroll-snap-stop: always;
+            width: 90%;
+            box-sizing: border-box;
+        }
+
+        section .content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #mixes {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        #mixes .content {
+            text-transform: uppercase;
+            font-size: 3rem;
+            width: 100%;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mixes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 2rem;
+        }
+
+        .mix-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .mix-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .mix-thumbnail {
+            width: 100%;
+            aspect-ratio: 16/9;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            view-transition-name: mix-thumbnail;
+        }
+
+        .mix-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            view-transition-name: mix-thumbnail;
+        }
+
+        .mix-details {
+            text-align: left;
+        }
+
+        .mix-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .mix-date {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .mix-description {
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 1rem;
+            text-transform: none;
+        }
+
+        @media screen and (max-width: 900px) {
+            body, html {
+                overflow-x: hidden;
+                width: 100%;
+            }
+
+            nav {
+                width: 90%;
+            }
+
+            nav .links {
+                display: none;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+
+            #mixes .content {
+                font-size: 1rem;
+                padding: 1rem;
+            }
+
+            .mixes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mix-title {
+                font-size: 1.5rem;
+            }
+
+            .mix-date, .mix-description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include "nav.njk" %}
+    <section id="mixes">
+        <div class="content">
+            <div class="mixes-grid">
+                {% for mix in mixes %}
+                <a href="/mixes/{{ mix.slug }}" class="mix-card">
+                    <div class="mix-thumbnail">
+                        <img src="/mixes/{{ mix.thumbnail }}" alt="{{ mix.title }}">
+                    </div>
+                    <div class="mix-details">
+                        <div class="mix-title">{{ mix.title }}</div>
+                        <div class="mix-date">{{ mix.date }}</div>
+                        <div class="mix-description">{{ mix.description }}</div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% include "scripts.njk" %}
+</body>
+</html>

@@ -1,0 +1,94 @@
+---
+permalink: "/index.html"
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TrajDali</title>
+    {% include "head.njk" %}
+    <style>
+        {% include "base-styles.njk" %}
+
+        html, body {
+            padding: 0;
+            margin: 0;
+            font-family: 'Roboto Condensed', sans-serif;
+            color: #231f20;
+        }
+
+        section {
+            height: 80vh;
+            padding: 10vh;
+            scroll-snap-align: start;
+            min-block-size: 80vh;
+            scroll-snap-stop: always;
+        }
+
+        section .content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #hero .hero-image {
+            background-image: url(./background.jpg);
+            background-image: -webkit-image-set(
+                url("./images/background-480.jpg") 1x,
+                url("./images/background-768.jpg") 2x,
+                url("./images/background-1200.jpg") 3x,
+                url("./images/background-1920.jpg") 4x
+            );
+            background-image: image-set(
+                url("./images/background-480.jpg") 1x,
+                url("./images/background-768.jpg") 2x,
+                url("./images/background-1200.jpg") 3x,
+                url("./images/background-1920.jpg") 4x
+            );
+            background-size: cover;
+            background-position: 75% 35%;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+        }
+
+        #hero .hero-image picture,
+        #hero .hero-image img {
+            width: 100%;
+            height: 100%;
+        }
+
+        @media screen and (max-width: 900px) {
+            body, html {
+                overflow-x: hidden;
+            }
+
+            nav .links {
+                display: none;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            #hero .hero-image {
+                background-position: 70% 35%;
+            }
+
+            nav {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include "nav.njk" %}
+    <section id="hero">
+        <div class="hero-image"></div>
+    </section>
+    {% include "scripts.njk" %}
+</body>
+</html>

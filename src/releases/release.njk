@@ -1,0 +1,375 @@
+---
+pagination:
+  data: releases
+  size: 1
+  alias: release
+permalink: "/{{ release.slug }}/index.html"
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TrajDali - {{ release.title }}</title>
+    {% include "head.njk" %}
+    <style>
+        {% include "base-styles.njk" %}
+
+        html, body {
+            padding: 0;
+            margin: 0;
+            font-family: 'Roboto Condensed', sans-serif;
+            color: #231f20;
+            scroll-snap-type: y mandatory;
+        }
+
+        section {
+            height: 100vh;
+            padding: 10vh;
+            scroll-snap-align: start;
+            min-block-size: 100vh;
+            scroll-snap-stop: always;
+        }
+
+        .release-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4rem;
+            padding: 2rem;
+        }
+
+        .release-cover {
+            flex: 1;
+            max-width: 50%;
+            aspect-ratio: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            view-transition-name: cover-image;
+        }
+
+        .release-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            view-transition-name: cover-image;
+        }
+
+        .release-info {
+            flex: 1;
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .release-title {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .release-type {
+            font-size: 1.5rem;
+            color: #666;
+        }
+
+        .release-year {
+            font-size: 1.5rem;
+            color: #888;
+        }
+
+        .release-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #444;
+            margin: 1rem 0;
+            text-transform: none;
+        }
+
+        .release-tracks {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .release-track {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .release-track:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .release-track:last-child {
+            border-bottom: none;
+        }
+
+        .release-track-number {
+            width: 3rem;
+            color: #666;
+        }
+
+        .release-track-name {
+            flex: 1;
+        }
+
+        .release-track-length {
+            color: #666;
+        }
+
+        .streaming-platforms {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .streaming-title {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .streaming-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .streaming-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            text-decoration: none;
+            background-color: #f5f5f5;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .streaming-button:hover {
+            transform: translateY(-2px);
+            background-color: #e0e0e0;
+        }
+
+        .streaming-button img {
+            width: 24px;
+            height: 24px;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .streaming-button:hover img {
+            opacity: 1;
+        }
+
+        .play-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background-color: #231f20;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .play-button:hover {
+            transform: scale(1.05);
+            background-color: #000;
+        }
+
+        .play-button svg {
+            width: 32px;
+            height: 32px;
+            fill: currentColor;
+        }
+
+        .audio-player {
+            width: 100%;
+            height: 4px;
+            background-color: #f5f5f5;
+            border-radius: 2px;
+            margin-top: 1rem;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .audio-progress {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background-color: #231f20;
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .audio-time {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        @media screen and (max-width: 900px) {
+            body, html {
+                overflow-x: hidden;
+            }
+
+            nav .links {
+                display: none;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+
+            .release-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .release-cover {
+                max-width: 100%;
+            }
+
+            .release-title {
+                font-size: 2.5rem;
+            }
+
+            .release-type, .release-year, .release-tracks {
+                font-size: 1.2rem;
+            }
+
+            .streaming-buttons {
+                justify-content: center;
+            }
+
+            .play-button {
+                margin: 0 auto 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include "nav.njk" %}
+    <section>
+        <div class="release-container">
+            <div class="release-cover">
+                <img src="/{{ release.slug }}/{{ release.slug }}-480.jpg"
+                     srcset="/{{ release.slug }}/{{ release.slug }}-480.jpg 480w,
+                             /{{ release.slug }}/{{ release.slug }}-768.jpg 768w,
+                             /{{ release.slug }}/{{ release.slug }}-1200.jpg 1200w,
+                             /{{ release.slug }}/{{ release.slug }}-2048.jpg 2048w"
+                     sizes="(max-width: 900px) 100vw, 50vw"
+                     alt="{{ release.title }} Cover">
+            </div>
+            <div class="release-info">
+                <div class="release-title">{{ release.title }}</div>
+                <div class="release-type">{{ release.type }}</div>
+                <div class="release-year">{{ release.year }}</div>
+                <div class="release-description">{{ release.description }}</div>
+                <div class="release-tracks">
+                    {% for track in release.tracks %}
+                    <div class="release-track">
+                        <div class="release-track-number">{{ track.number }}</div>
+                        <div class="release-track-name">{{ track.name }}</div>
+                        <div class="release-track-length">{{ track.duration }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <button class="play-button">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+                <div class="audio-player">
+                    <div class="audio-progress"></div>
+                </div>
+                <div class="audio-time">
+                    <span class="current-time">0:00</span>
+                    <span class="duration">{{ release.tracks[0].duration }}</span>
+                </div>
+                <div class="streaming-platforms">
+                    <div class="streaming-title">Listen on</div>
+                    <div class="streaming-buttons">
+                        {% if release.streaming.spotify %}
+                        <a href="{{ release.streaming.spotify }}" target="_blank" class="streaming-button">
+                            <img src="/icons/spotify.svg" alt="Spotify">
+                        </a>
+                        {% endif %}
+                        {% if release.streaming.soundcloud %}
+                        <a href="{{ release.streaming.soundcloud }}" target="_blank" class="streaming-button">
+                            <img src="/icons/soundcloud.svg" alt="SoundCloud">
+                        </a>
+                        {% endif %}
+                        {% if release.streaming.appleMusic %}
+                        <a href="{{ release.streaming.appleMusic }}" target="_blank" class="streaming-button">
+                            <img src="/icons/apple-music.svg" alt="Apple Music">
+                        </a>
+                        {% endif %}
+                        {% if release.streaming.youtube %}
+                        <a href="{{ release.streaming.youtube }}" target="_blank" class="streaming-button">
+                            <img src="/icons/youtube.svg" alt="YouTube">
+                        </a>
+                        {% endif %}
+                        {% if release.streaming.bandcamp %}
+                        <a href="{{ release.streaming.bandcamp }}" target="_blank" class="streaming-button">
+                            <img src="/icons/bandcamp.svg" alt="Bandcamp">
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const audio = new Audio('/{{ release.slug }}/{{ release.slug }}.mp3');
+        let isPlaying = false;
+
+        const audioPlayer = document.querySelector('.audio-player');
+        const audioTime = document.querySelector('.audio-time');
+        const playButton = document.querySelector('.play-button');
+
+        playButton.addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+                playButton.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+            } else {
+                audio.play();
+                playButton.innerHTML = '<svg viewBox="0 0 24 24"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg>';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        audio.addEventListener('timeupdate', () => {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            audioPlayer.querySelector('.audio-progress').style.width = progress + '%';
+            const minutes = Math.floor(audio.currentTime / 60);
+            const seconds = Math.floor(audio.currentTime % 60);
+            audioTime.querySelector('.current-time').textContent =
+                minutes + ':' + seconds.toString().padStart(2, '0');
+        });
+
+        audioPlayer.addEventListener('click', (e) => {
+            const rect = audioPlayer.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const percentage = x / rect.width;
+            audio.currentTime = percentage * audio.duration;
+        });
+    </script>
+    {% include "scripts.njk" %}
+</body>
+</html>

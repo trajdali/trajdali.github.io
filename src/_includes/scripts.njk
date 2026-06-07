@@ -1,0 +1,28 @@
+<script>
+    const burgerMenu = document.querySelector('.burger-menu');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    burgerMenu.addEventListener('click', () => {
+        burgerMenu.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            burgerMenu.classList.remove('active');
+            mobileMenu.classList.remove('active');
+        });
+    });
+
+    if (document.startViewTransition) {
+        document.addEventListener('click', async e => {
+            if (!e.target.closest('a')) return;
+            e.preventDefault();
+            const href = e.target.closest('a').href;
+            const transition = document.startViewTransition(async () => {
+                window.location.href = href;
+            });
+            await transition.finished;
+        });
+    }
+</script>

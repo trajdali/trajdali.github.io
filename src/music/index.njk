@@ -1,0 +1,189 @@
+---
+permalink: "/music/index.html"
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TrajDali | Music</title>
+    {% include "head.njk" %}
+    <style>
+        {% include "base-styles.njk" %}
+
+        html, body {
+            padding: 0;
+            margin: 0;
+            font-family: 'Roboto Condensed', sans-serif;
+            color: #231f20;
+            scroll-snap-type: y mandatory;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        nav {
+            width: 90%;
+        }
+
+        section {
+            height: 80vh;
+            padding: 10vh 5%;
+            scroll-snap-align: start;
+            min-block-size: 80vh;
+            scroll-snap-stop: always;
+            width: 90%;
+            box-sizing: border-box;
+        }
+
+        section .content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #music {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        #music .content {
+            text-transform: uppercase;
+            font-size: 3rem;
+            width: 100%;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .releases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 2rem;
+        }
+
+        .release-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .release-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .release-cover-image {
+            width: 94%;
+            aspect-ratio: 1;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            view-transition-name: cover-image;
+        }
+
+        .release-cover-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            view-transition-name: cover-image;
+        }
+
+        .release-details {
+            text-align: left;
+        }
+
+        .release-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .release-type {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .release-year {
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        @media screen and (max-width: 900px) {
+            body, html {
+                overflow-x: hidden;
+                width: 100%;
+            }
+
+            nav {
+                width: 90%;
+            }
+
+            nav .links {
+                display: none;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+
+            #music .content {
+                font-size: 1rem;
+                padding: 1rem;
+            }
+
+            .releases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .release-title {
+                font-size: 1.5rem;
+            }
+
+            .release-type, .release-year, .release-tracks {
+                font-size: 1rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            nav {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include "nav.njk" %}
+    <section id="music">
+        <div class="content">
+            <div class="releases-grid">
+                {% for release in releases %}
+                <a href="/{{ release.slug }}" class="release-card">
+                    <div class="release-cover-image">
+                        <img src="/music/{{ release.slug }}-480.jpg" alt="{{ release.title }} Cover">
+                    </div>
+                    <div class="release-details">
+                        <div class="release-title">{{ release.title }}</div>
+                        <div class="release-type">{{ release.type }}</div>
+                        <div class="release-year">{{ release.year }}</div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% include "scripts.njk" %}
+</body>
+</html>

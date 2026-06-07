@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "contemporary-alt-mix",
+    "title": "Contemporary Alt Mix",
+    "date": "October 2024",
+    "description": "A mix of remixed contemporary alternative Serbian music.",
+    "thumbnail": "contemporary-alt-mix-thumb.jpg",
+    "youtubeEmbed": "https://www.youtube.com/embed/lZtCEpSlR_Y?autoplay=0",
+    "youtubeWatch": "https://www.youtube.com/watch?v=lZtCEpSlR_Y",
+    "streaming": {
+      "soundcloud": "https://soundcloud.com/trajdali/sets/contemporary-alt-mix",
+      "mixcloud": "https://www.mixcloud.com/TrajDali/trajdali-contemporary-alt-mix/",
+      "spotify": null
+    },
+    "tracklist": [
+      { "number": 1, "title": "Ramonda (TrajDali Contemporary Alt Mix)", "artist": "Teya Dora", "duration": "01:46" },
+      { "number": 2, "title": "Ona (TrajDali Contemporary Alt Mix)", "artist": "Dram", "duration": "06:34" },
+      { "number": 3, "title": "Hodam (TrajDali Contemporary Alt Mix)", "artist": "Retrospektiva", "duration": "11:52" },
+      { "number": 4, "title": "Nema ljubavi u klubu (TrajDali CntmpryAlt Demo)", "artist": "Buč Kesidi", "duration": "14:18" },
+      { "number": 5, "title": "Opet (TrajDali Contemporary Alt Mix)", "artist": "Ljubičice", "duration": "16:26" },
+      { "number": 6, "title": "Ljubav (TrajDali Contemporary Alt Mix)", "artist": "Bojana Vunturišević", "duration": "19:54" },
+      { "number": 7, "title": "Mekano (TrajDali Contemporary Alt Mix)", "artist": "Filip Baloš", "duration": "23:37" }
+    ]
+  },
+  {
+    "slug": "made-in-yugoslavia",
+    "title": "Made in Yugoslavia",
+    "date": "August 2023",
+    "description": "Refreshed and remixed old Yugoslavian songs.",
+    "thumbnail": "made-in-yugoslavia-thumb.jpg",
+    "youtubeEmbed": "https://www.youtube.com/embed/cgH_8w68fTc?autoplay=0",
+    "youtubeWatch": "https://www.youtube.com/watch?v=cgH_8w68fTc",
+    "streaming": {
+      "soundcloud": "https://soundcloud.com/trajdali/sets/made-in-yugoslavia",
+      "mixcloud": "https://www.mixcloud.com/TrajDali/trajdali-made-in-yugoslavia/",
+      "spotify": null
+    },
+    "tracklist": [
+      { "number": 1, "title": "Kao Rijeka Svome Moru (TrajDali Refresh)", "artist": "Meri Cetinić", "duration": "01:00" },
+      { "number": 2, "title": "Volim Prave Stvar (TrajDali Refresh)", "artist": "Dejan Petković", "duration": "05:00" },
+      { "number": 3, "title": "Quand Tu Danses (TrajDali Refresh)", "artist": "Micky Milan", "duration": "08:56" },
+      { "number": 4, "title": "Disko Par (TrajDali Refresh)", "artist": "Zorica Milosavljević", "duration": "13:12" },
+      { "number": 5, "title": "Neko Kao Ja", "artist": "TrajDali x Boom Selekcija", "duration": "17:12" },
+      { "number": 6, "title": "Zaspao Si U Mojoj Kosi (TrajDali Refresh)", "artist": "Neca Falk", "duration": "21:44" }
+    ]
+  }
+]

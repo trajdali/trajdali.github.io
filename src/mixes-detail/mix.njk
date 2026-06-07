@@ -1,0 +1,294 @@
+---
+pagination:
+  data: mixes
+  size: 1
+  alias: mix
+permalink: "/mixes/{{ mix.slug }}/index.html"
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TrajDali - {{ mix.title }}</title>
+    {% include "head.njk" %}
+    <style>
+        {% include "base-styles.njk" %}
+
+        html, body {
+            padding: 0;
+            margin: 0;
+            font-family: 'Roboto Condensed', sans-serif;
+            color: #231f20;
+            scroll-snap-type: y mandatory;
+        }
+
+        section {
+            height: 100vh;
+            padding: 10vh 5%;
+            box-sizing: border-box;
+        }
+
+        section .content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mix-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .mix-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .mix-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .mix-date {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .mix-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #444;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .video-section {
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .tracklist-section {
+            width: 100%;
+            background: #fff;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .tracklist-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .tracklist {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .track-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .track-item:last-child {
+            border-bottom: none;
+        }
+
+        .track-number {
+            width: 3rem;
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .track-info {
+            flex: 1;
+        }
+
+        .track-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .track-artist {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .track-time {
+            color: #666;
+            font-size: 1rem;
+            margin-left: 2rem;
+        }
+
+        .mix-actions {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: auto;
+        }
+
+        .action-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-color: #f5f5f5;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            background-color: #e0e0e0;
+        }
+
+        .action-button img {
+            width: 28px;
+            height: 28px;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .action-button:hover img {
+            opacity: 1;
+        }
+
+        @media screen and (max-width: 900px) {
+            body, html {
+                overflow-x: hidden;
+            }
+
+            nav .links {
+                display: none;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+
+            .mix-title {
+                font-size: 2.5rem;
+            }
+
+            .mix-description {
+                font-size: 1rem;
+            }
+
+            .track-item {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .track-time {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .mix-actions {
+                gap: 1rem;
+            }
+
+            .action-button {
+                width: 48px;
+                height: 48px;
+            }
+
+            .action-button img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include "nav.njk" %}
+    <section>
+        <div class="mix-container">
+            <div class="mix-header">
+                <div class="mix-title">{{ mix.title }}</div>
+                <div class="mix-date">{{ mix.date }}</div>
+                <div class="mix-description">{{ mix.description }}</div>
+            </div>
+            <div class="video-section">
+                <div class="video-container">
+                    <iframe
+                        src="{{ mix.youtubeEmbed }}"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+            <div class="tracklist-section">
+                <div class="tracklist-title">Tracklist</div>
+                <ul class="tracklist">
+                    {% for track in mix.tracklist %}
+                    <li class="track-item">
+                        <div class="track-number">{{ track.number }}</div>
+                        <div class="track-info">
+                            <div class="track-title">{{ track.title }}</div>
+                            <div class="track-artist">{{ track.artist }}</div>
+                        </div>
+                        <div class="track-time">{{ track.duration }}</div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="mix-actions">
+                {% if mix.streaming.soundcloud %}
+                <a href="{{ mix.streaming.soundcloud }}" class="action-button">
+                    <img src="/icons/soundcloud.svg" alt="SoundCloud">
+                </a>
+                {% endif %}
+                {% if mix.streaming.mixcloud %}
+                <a href="{{ mix.streaming.mixcloud }}" class="action-button">
+                    <img src="/icons/mixcloud.svg" alt="Mixcloud">
+                </a>
+                {% endif %}
+                {% if mix.streaming.spotify %}
+                <a href="{{ mix.streaming.spotify }}" class="action-button">
+                    <img src="/icons/spotify.svg" alt="Spotify">
+                </a>
+                {% endif %}
+                <a href="{{ mix.youtubeWatch }}" class="action-button">
+                    <img src="/icons/youtube.svg" alt="YouTube">
+                </a>
+            </div>
+        </div>
+    </section>
+    <section></section>
+    {% include "scripts.njk" %}
+</body>
+</html>
