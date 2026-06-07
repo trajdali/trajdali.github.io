@@ -30,7 +30,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.ignores.add("new-love/index.html");
   eleventyConfig.ignores.add("til-the-sun-comes-up/index.html");
   eleventyConfig.ignores.add("cant-do-without/index.html");
-  eleventyConfig.ignores.add("simple-things/index.html");npm ru
+  eleventyConfig.ignores.add("simple-things/index.html");
   eleventyConfig.ignores.add("keep-trying/index.html");
   eleventyConfig.ignores.add("mixes/contemporary-alt-mix/index.html");
   eleventyConfig.ignores.add("mixes/made-in-yugoslavia/index.html");
