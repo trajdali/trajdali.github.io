@@ -6,7 +6,7 @@
     "type": "Single",
     "description": "A track made as a support for the student protests in Serbia.",
     "tracks": [
-      { "number": 1, "name": "New Love", "duration": "5:00" }
+      { "number": 1, "name": "New Love", "duration": "5:00", "audio": "new-love.mp3" }
     ],
     "streaming": {
       "spotify": null,
@@ -14,7 +14,8 @@
       "appleMusic": null,
       "youtube": "https://www.youtube.com/watch?v=eGnzWWB4miE",
       "bandcamp": "https://trajdali.bandcamp.com/track/new-love"
-    }
+    },
+    "vinyl": null
   },
   {
     "slug": "til-the-sun-comes-up",
@@ -23,7 +24,7 @@
     "type": "Single",
     "description": "A melodic house track that captures the essence of summer nights and unforgettable moments.",
     "tracks": [
-      { "number": 1, "name": "Til The Sun Comes Up", "duration": "5:43" }
+      { "number": 1, "name": "Til The Sun Comes Up", "duration": "5:43", "audio": "til-the-sun-comes-up.mp3" }
     ],
     "streaming": {
       "spotify": "https://open.spotify.com/album/57naCxvovgzZxluB8pUjb6?si=B7M8nwraS7qzq2IsCswp3Q",
@@ -31,7 +32,8 @@
       "appleMusic": "https://music.apple.com/rs/album/til-the-sun-comes-up-single/1707889553",
       "youtube": "https://www.youtube.com/watch?v=984cY5Iyeq0",
       "bandcamp": null
-    }
+    },
+    "vinyl": null
   },
   {
     "slug": "cant-do-without",
@@ -40,7 +42,7 @@
     "type": "Single",
     "description": "A melodic house track that captures the essence of summer nights and unforgettable moments.",
     "tracks": [
-      { "number": 1, "name": "Can't Do Without", "duration": "4:20" }
+      { "number": 1, "name": "Can't Do Without", "duration": "4:20", "audio": "cant-do-without.mp3" }
     ],
     "streaming": {
       "spotify": "https://open.spotify.com/album/50URXE6wiVMgiaHulsCmN1?si=mE-NUfK6QNy9gfCC6FeCcA",
@@ -48,7 +50,8 @@
       "appleMusic": "https://music.apple.com/gb/album/cant-do-without-single/1696341181",
       "youtube": "https://www.youtube.com/watch?v=alO3DjAszMc",
       "bandcamp": null
-    }
+    },
+    "vinyl": null
   },
   {
     "slug": "simple-things",
@@ -57,7 +60,7 @@
     "type": "Single",
     "description": "A melodic house track that captures the essence of summer nights and unforgettable moments.",
     "tracks": [
-      { "number": 1, "name": "Simple Things", "duration": "2:54" }
+      { "number": 1, "name": "Simple Things", "duration": "2:54", "audio": "simple-things.mp3" }
     ],
     "streaming": {
       "spotify": "https://open.spotify.com/album/72j5Tdw5BIJM77uxRYsule?si=ukHQFOVlR6G1IilOiDNxHQ",
@@ -65,7 +68,8 @@
       "appleMusic": "https://music.apple.com/rs/album/simple-things-single/1692395290",
       "youtube": "https://www.youtube.com/watch?v=YSVSv1B6pBM",
       "bandcamp": null
-    }
+    },
+    "vinyl": null
   },
   {
     "slug": "keep-trying",
@@ -74,7 +78,7 @@
     "type": "Single",
     "description": "A melodic house track that captures the essence of summer nights and unforgettable moments.",
     "tracks": [
-      { "number": 1, "name": "Keep Trying", "duration": "3:52" }
+      { "number": 1, "name": "Keep Trying", "duration": "3:52", "audio": "keep-trying.mp3" }
     ],
     "streaming": {
       "spotify": "https://open.spotify.com/album/0HybQqhiKUPuxcavOEEVic?si=WvnEobxtSm2YG-T7L6NmOw",
@@ -82,6 +86,7 @@
       "appleMusic": "https://music.apple.com/rs/album/keep-trying-single/1688231164",
       "youtube": "https://www.youtube.com/watch?v=HZJjBZJ_iz0",
       "bandcamp": null
-    }
+    },
+    "vinyl": null
   }
 ]

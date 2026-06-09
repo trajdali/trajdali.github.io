@@ -90,6 +90,8 @@ permalink: "/{{ release.slug }}/index.html"
         .release-tracks {
             font-size: 1.5rem;
             margin-top: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
 
         .release-track {
@@ -98,10 +100,25 @@ permalink: "/{{ release.slug }}/index.html"
             padding: 1rem 0;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s ease;
+            cursor: pointer;
+            padding: 0.75rem 1rem;
         }
 
         .release-track:hover {
             background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .release-track.active {
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+
+        .release-track.active .release-track-number {
+            color: #231f20;
+            font-weight: 700;
+        }
+
+        .release-track.active .release-track-name {
+            font-weight: 700;
         }
 
         .release-track:last-child {
@@ -181,7 +198,7 @@ permalink: "/{{ release.slug }}/index.html"
             color: white;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-bottom: 1rem;
+            margin-top: 1rem;
         }
 
         .play-button:hover {
@@ -222,6 +239,55 @@ permalink: "/{{ release.slug }}/index.html"
             margin-top: 0.5rem;
             font-size: 0.9rem;
             color: #666;
+        }
+
+        .vinyl-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.75rem;
+            background-color: #231f20;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: 'Roboto Condensed', sans-serif;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+        }
+
+        .analog-section {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .analog-title {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .analog-description {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.7rem;
+            margin-bottom: 1rem;
+            text-transform: none;
+        }
+
+        .vinyl-button:hover {
+            transform: translateY(-2px);
+            background-color: #000;
+        }
+
+        .vinyl-button svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            flex-shrink: 0;
         }
 
         @media screen and (max-width: 900px) {
@@ -284,7 +350,7 @@ permalink: "/{{ release.slug }}/index.html"
                 <div class="release-description">{{ release.description }}</div>
                 <div class="release-tracks">
                     {% for track in release.tracks %}
-                    <div class="release-track">
+                    <div class="release-track" data-index="{{ loop.index0 }}">
                         <div class="release-track-number">{{ track.number }}</div>
                         <div class="release-track-name">{{ track.name }}</div>
                         <div class="release-track-length">{{ track.duration }}</div>
@@ -331,42 +397,110 @@ permalink: "/{{ release.slug }}/index.html"
                         {% endif %}
                     </div>
                 </div>
+                {% if release.vinyl %}
+                <div class="analog-section">
+                    <div class="analog-title">Or, if you fancy the analog route</div>
+                    <div class="analog-description">Because there is nothing quite like the ritual of pulling a record from the sleeve, dropping the needle, and getting lost in the album art.</div>
+                    <a href="{{ release.vinyl }}" target="_blank" class="vinyl-button">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                        </svg>
+                        Buy Vinyl
+                    </a>
+                </div>
+                {% endif %}
             </div>
         </div>
     </section>
 
     <script>
-        const audio = new Audio('/{{ release.slug }}/{{ release.slug }}.mp3');
+        const playlist = [
+            {% for track in release.tracks %}
+            { src: '/{{ release.slug }}/{{ track.audio }}', duration: '{{ track.duration }}' }{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ];
+
+        let currentIndex = 0;
         let isPlaying = false;
+        const audio = new Audio(playlist[0].src);
 
         const audioPlayer = document.querySelector('.audio-player');
+        const audioProgress = audioPlayer.querySelector('.audio-progress');
         const audioTime = document.querySelector('.audio-time');
+        const currentTimeEl = audioTime.querySelector('.current-time');
+        const durationEl = audioTime.querySelector('.duration');
         const playButton = document.querySelector('.play-button');
+        const trackRows = document.querySelectorAll('.release-track');
+
+        const PLAY_ICON = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+        const PAUSE_ICON = '<svg viewBox="0 0 24 24"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg>';
+
+        function formatTime(seconds) {
+            const m = Math.floor(seconds / 60);
+            const s = Math.floor(seconds % 60);
+            return m + ':' + s.toString().padStart(2, '0');
+        }
+
+        function setActiveTrack(index) {
+            trackRows.forEach(row => row.classList.remove('active'));
+            trackRows[index].classList.add('active');
+            durationEl.textContent = playlist[index].duration;
+            currentTimeEl.textContent = '0:00';
+            audioProgress.style.width = '0%';
+            currentIndex = index;
+        }
+
+        function loadAndPlay(index) {
+            setActiveTrack(index);
+            audio.src = playlist[index].src;
+            audio.play();
+            isPlaying = true;
+            playButton.innerHTML = PAUSE_ICON;
+        }
 
         playButton.addEventListener('click', () => {
             if (isPlaying) {
                 audio.pause();
-                playButton.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+                playButton.innerHTML = PLAY_ICON;
             } else {
                 audio.play();
-                playButton.innerHTML = '<svg viewBox="0 0 24 24"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg>';
+                playButton.innerHTML = PAUSE_ICON;
             }
             isPlaying = !isPlaying;
         });
 
+        trackRows.forEach((row, index) => {
+            row.addEventListener('click', () => {
+                if (index === currentIndex && isPlaying) {
+                    audio.pause();
+                    isPlaying = false;
+                    playButton.innerHTML = PLAY_ICON;
+                } else {
+                    loadAndPlay(index);
+                }
+            });
+        });
+
         audio.addEventListener('timeupdate', () => {
             const progress = (audio.currentTime / audio.duration) * 100;
-            audioPlayer.querySelector('.audio-progress').style.width = progress + '%';
-            const minutes = Math.floor(audio.currentTime / 60);
-            const seconds = Math.floor(audio.currentTime % 60);
-            audioTime.querySelector('.current-time').textContent =
-                minutes + ':' + seconds.toString().padStart(2, '0');
+            audioProgress.style.width = progress + '%';
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+        });
+
+        audio.addEventListener('ended', () => {
+            if (currentIndex < playlist.length - 1) {
+                loadAndPlay(currentIndex + 1);
+            } else {
+                isPlaying = false;
+                playButton.innerHTML = PLAY_ICON;
+                setActiveTrack(0);
+                audio.src = playlist[0].src;
+            }
         });
 
         audioPlayer.addEventListener('click', (e) => {
             const rect = audioPlayer.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const percentage = x / rect.width;
+            const percentage = (e.clientX - rect.left) / rect.width;
             audio.currentTime = percentage * audio.duration;
         });
     </script>
