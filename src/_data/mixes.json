@@ -1,5 +1,26 @@
 [
   {
+    "slug": "nostalgia-mix",
+    "title": "Nostalgia Mix",
+    "date": "September 2025",
+    "description": "2000s throwback house tracks.",
+    "thumbnail": "nostalgia-mix-thumb.jpg",
+    "youtubeEmbed": "https://www.youtube.com/embed/PEdNcVlwQxk?autoplay=0",
+    "youtubeWatch": "https://www.youtube.com/watch?v=PEdNcVlwQxk",
+    "streaming": {
+      "mixcloud": "https://www.mixcloud.com/TrajDali/trajdali-nostalgia-mix/",
+      "spotify": null
+    },
+    "tracklist": [
+      { "number": 1, "title": "I Just Can't Get Enough (Freemasons Remix)", "artist": "Herd & Fitz", "duration": "09:08" },
+      { "number": 2, "title": "At Night (Kid Creme Club Mix)", "artist": "Shakedown", "duration": "06:22" },
+      { "number": 3, "title": "Right About Now (Fuzzy Hair Vocal Mix)", "artist": "Mousse T. ft Emma Lanford", "duration": "05:52" },
+      { "number": 4, "title": "Freek U (Full Intention Dub Mix)", "artist": "Bon Garcon", "duration": "06:25" },
+      { "number": 5, "title": "Thrill Me (Original Version By Junior Jack)", "artist": "Junior Jack", "duration": "04:22" },
+      { "number": 6, "title": "2 Million Ways (Axwell Remix)", "artist": "C-Mos", "duration": "06:47" }
+    ]
+  },
+  {
     "slug": "contemporary-alt-mix",
     "title": "Contemporary Alt Mix",
     "date": "October 2024",
@@ -13,13 +34,14 @@
       "spotify": null
     },
     "tracklist": [
-      { "number": 1, "title": "Ramonda (TrajDali Contemporary Alt Mix)", "artist": "Teya Dora", "duration": "01:46" },
-      { "number": 2, "title": "Ona (TrajDali Contemporary Alt Mix)", "artist": "Dram", "duration": "06:34" },
-      { "number": 3, "title": "Hodam (TrajDali Contemporary Alt Mix)", "artist": "Retrospektiva", "duration": "11:52" },
-      { "number": 4, "title": "Nema ljubavi u klubu (TrajDali CntmpryAlt Demo)", "artist": "Buč Kesidi", "duration": "14:18" },
-      { "number": 5, "title": "Opet (TrajDali Contemporary Alt Mix)", "artist": "Ljubičice", "duration": "16:26" },
-      { "number": 6, "title": "Ljubav (TrajDali Contemporary Alt Mix)", "artist": "Bojana Vunturišević", "duration": "19:54" },
-      { "number": 7, "title": "Mekano (TrajDali Contemporary Alt Mix)", "artist": "Filip Baloš", "duration": "23:37" }
+      { "number": 0, "title": "Intro", "artist": "TrajDali", "duration": "01:46" },
+      { "number": 1, "title": "Ramonda (TrajDali Contemporary Alt Mix)", "artist": "Teya Dora", "duration": "04:48" },
+      { "number": 2, "title": "Ona (TrajDali Contemporary Alt Mix)", "artist": "Dram", "duration": "05:18" },
+      { "number": 3, "title": "Hodam (TrajDali Contemporary Alt Mix)", "artist": "Retrospektiva", "duration": "02:26" },
+      { "number": 4, "title": "Nema ljubavi u klubu (TrajDali CntmpryAlt Demo)", "artist": "Buč Kesidi", "duration": "02:08" },
+      { "number": 5, "title": "Opet (TrajDali Contemporary Alt Mix)", "artist": "Ljubičice", "duration": "03:28" },
+      { "number": 6, "title": "Ljubav (TrajDali Contemporary Alt Mix)", "artist": "Bojana Vunturišević", "duration": "03:43" },
+      { "number": 7, "title": "Mekano (TrajDali Contemporary Alt Mix)", "artist": "Filip Baloš", "duration": "03:41" }
     ]
   },
   {
@@ -36,12 +58,13 @@
       "spotify": null
     },
     "tracklist": [
-      { "number": 1, "title": "Kao Rijeka Svome Moru (TrajDali Refresh)", "artist": "Meri Cetinić", "duration": "01:00" },
-      { "number": 2, "title": "Volim Prave Stvar (TrajDali Refresh)", "artist": "Dejan Petković", "duration": "05:00" },
-      { "number": 3, "title": "Quand Tu Danses (TrajDali Refresh)", "artist": "Micky Milan", "duration": "08:56" },
-      { "number": 4, "title": "Disko Par (TrajDali Refresh)", "artist": "Zorica Milosavljević", "duration": "13:12" },
-      { "number": 5, "title": "Neko Kao Ja", "artist": "TrajDali x Boom Selekcija", "duration": "17:12" },
-      { "number": 6, "title": "Zaspao Si U Mojoj Kosi (TrajDali Refresh)", "artist": "Neca Falk", "duration": "21:44" }
+      { "number": 0, "title": "Intro", "artist": "TrajDali", "duration": "01:00" },
+      { "number": 1, "title": "Kao Rijeka Svome Moru (TrajDali Refresh)", "artist": "Meri Cetinić", "duration": "04:00" },
+      { "number": 2, "title": "Volim Prave Stvar (TrajDali Refresh)", "artist": "Dejan Petković", "duration": "03:56" },
+      { "number": 3, "title": "Quand Tu Danses (TrajDali Refresh)", "artist": "Micky Milan", "duration": "04:16" },
+      { "number": 4, "title": "Disko Par (TrajDali Refresh)", "artist": "Zorica Milosavljević", "duration": "04:00" },
+      { "number": 5, "title": "Neko Kao Ja", "artist": "TrajDali x Boom Selekcija", "duration": "04:32" },
+      { "number": 6, "title": "Zaspao Si U Mojoj Kosi (TrajDali Refresh)", "artist": "Neca Falk", "duration": "02:54" }
     ]
   }
 ]
