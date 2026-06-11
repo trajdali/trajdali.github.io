@@ -244,15 +244,15 @@ permalink: "/{{ release.slug }}/index.html"
         .vinyl-button {
             display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem 1.75rem;
-            background-color: #231f20;
-            color: #fff;
+            gap: 0.6rem;
+            padding: 0.6rem 1.5rem;
+            background-color: transparent;
+            border: 1px solid rgba(35, 31, 32, 0.3);
+            color: #231f20;
             text-decoration: none;
             border-radius: 50px;
-            font-size: 1rem;
-            font-family: 'Roboto Condensed', sans-serif;
-            letter-spacing: 0.1em;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
             transition: all 0.3s ease;
             align-self: flex-start;
@@ -280,12 +280,14 @@ permalink: "/{{ release.slug }}/index.html"
 
         .vinyl-button:hover {
             transform: translateY(-2px);
-            background-color: #000;
+            border-color: #231f20;
+            background-color: #231f20;
+            color: #fff;
         }
 
         .vinyl-button svg {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             fill: currentColor;
             flex-shrink: 0;
         }

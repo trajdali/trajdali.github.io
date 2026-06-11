@@ -85,7 +85,7 @@ permalink: "/music/index.html"
         }
 
         .release-cover-image {
-            width: 94%;
+            width: 100%;
             aspect-ratio: 1;
             margin-bottom: 1rem;
             border-radius: 10px;
@@ -172,7 +172,12 @@ permalink: "/music/index.html"
                 {% for release in releases %}
                 <a href="/{{ release.slug }}" class="release-card">
                     <div class="release-cover-image">
-                        <img src="/music/{{ release.slug }}-480.jpg" alt="{{ release.title }} Cover">
+                        <img src="/music/{{ release.slug }}-480.jpg"
+                             srcset="/{{ release.slug }}/{{ release.slug }}-480.jpg 480w,
+                                     /{{ release.slug }}/{{ release.slug }}-768.jpg 768w,
+                                     /{{ release.slug }}/{{ release.slug }}-1200.jpg 1200w"
+                             sizes="(max-width: 900px) 90vw, 380px"
+                             alt="{{ release.title }} Cover">
                     </div>
                     <div class="release-details">
                         <div class="release-title">{{ release.title }}</div>

@@ -1,3 +1,8 @@
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 nav {
     position: absolute;
     top: 0;
@@ -11,27 +16,24 @@ nav {
 
 nav #logo {
     max-height: 150%;
-    margin-top: 1%;
+    margin-top: 0.75rem;
     flex: 1;
     max-width: calc(100% - 35px);
 }
 
 nav .links {
     flex: 1;
-    padding: 1.5%;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
+    align-items: center;
+    gap: clamp(1.5rem, 3vw, 3.5rem);
 }
 
 nav .links a {
-    padding: 1% 5%;
     text-decoration: none;
     color: inherit;
-    font-size: 2rem;
-}
-
-nav .links a:last-child {
-    padding-right: 0;
+    font-size: clamp(1.25rem, 0.5rem + 1vw, 2rem);
+    padding: 0.25rem 0;
 }
 
 #logo img {

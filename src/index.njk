@@ -35,16 +35,12 @@ permalink: "/index.html"
         #hero .hero-image {
             background-image: url(./background.jpg);
             background-image: -webkit-image-set(
-                url("./images/background-480.jpg") 1x,
-                url("./images/background-768.jpg") 2x,
-                url("./images/background-1200.jpg") 3x,
-                url("./images/background-1920.jpg") 4x
+                url("./images/background-1200.jpg") 1x,
+                url("./images/background-1920.jpg") 2x
             );
             background-image: image-set(
-                url("./images/background-480.jpg") 1x,
-                url("./images/background-768.jpg") 2x,
-                url("./images/background-1200.jpg") 3x,
-                url("./images/background-1920.jpg") 4x
+                url("./images/background-1200.jpg") 1x,
+                url("./images/background-1920.jpg") 2x
             );
             background-size: cover;
             background-position: 75% 35%;
@@ -76,6 +72,14 @@ permalink: "/index.html"
         @media screen and (max-width: 480px) {
             #hero .hero-image {
                 background-position: 70% 35%;
+                background-image: -webkit-image-set(
+                    url("./images/background-480.jpg") 1x,
+                    url("./images/background-1200.jpg") 2x
+                );
+                background-image: image-set(
+                    url("./images/background-480.jpg") 1x,
+                    url("./images/background-1200.jpg") 2x
+                );
             }
 
             nav {
