@@ -1,5 +1,25 @@
 [
   {
+    "slug": "think-about-this-vinyl",
+    "title": "Think About This (Vinyl)",
+    "year": "2012",
+    "type": "Single",
+    "description": "",
+    "tracks": [
+      { "number": 1, "name": "Think About This (Original Mix)", "duration": "8:31", "audio": "think-about-this-original-mix.mp3" },
+      { "number": 2, "name": "Think About This (Noff Vocal Mix)", "duration": "6:51", "audio": "think-about-this-noff-vocal-mix.mp3" },
+      { "number": 3, "name": "Think About This (7S Vocal Mix)", "duration": "7:41", "audio": "think-about-this-7s-vocal-mix.mp3" }
+    ],
+    "streaming": {
+      "spotify": "https://open.spotify.com/album/7ggB8wytU389WNduPNtKFF?si=cVcLr01PSbiSnrZvmcUCCg",
+      "soundcloud": "https://soundcloud.com/trajdali/trajdali-sevensensis-think-about-this-radio-edit",
+      "appleMusic": "https://music.apple.com/us/album/think-about-this/1803941359",
+      "youtube": "https://www.youtube.com/playlist?list=OLAK5uy_k6thmaHyJeulNeohynKyLqZIGARakNF9w",
+      "bandcamp": null
+    },
+    "vinyl": "https://elasticstage.com/trajdali/releases/think-about-this-singleep"
+  },  
+  {
     "slug": "new-love",
     "title": "New Love",
     "year": "2025",
